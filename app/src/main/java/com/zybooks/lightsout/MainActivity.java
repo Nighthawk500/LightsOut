@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mLightOnColorId = R.color.yellow;
-
         mLightGrid = findViewById(R.id.light_grid);
 
         // Add the same click handler to all grid buttons
@@ -46,19 +44,25 @@ public class MainActivity extends AppCompatActivity {
         Button topLeftButton = (Button) mLightGrid.getChildAt(0);
         topLeftButton.setOnLongClickListener(this::onTopLeftButtonLongClick);
 
-        mLightOnColor = ContextCompat.getColor(this, R.color.yellow);
         mLightOffColor = ContextCompat.getColor(this, R.color.black);
         mLightOnContent = getString(R.string.on);
         mLightOffContent = getString(R.string.off);
 
-        mGame = new LightsOutGame();
-
         if (savedInstanceState == null) {
+            //Set default color
+            mLightOnColorId = R.color.yellow;
+            mLightOnColor = ContextCompat.getColor(this, mLightOnColorId);
+            mGame = new LightsOutGame();
             startGame();
         }
         else {
+            mGame = new LightsOutGame();
             String gameState = savedInstanceState.getString(GAME_STATE);
             mGame.setState(gameState);
+            //Restore color
+            mLightOnColorId = savedInstanceState.getInt("lightOnColorId", R.color.yellow);
+            //Set color
+            mLightOnColor = ContextCompat.getColor(this, mLightOnColorId);
             setButtonColors();
         }
     }
@@ -67,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(GAME_STATE, mGame.getState());
+        //Save the color
+        outState.putInt("lightOnColorId", mLightOnColorId);
     }
 
     private boolean onTopLeftButtonLongClick(View view) {
