@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
     private GridLayout mLightGrid;
     private int mLightOnColor;
     private int mLightOffColor;
+    private String mLightOnContent;
+    private String mLightOffContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
         mLightOnColor = ContextCompat.getColor(this, R.color.yellow);
         mLightOffColor = ContextCompat.getColor(this, R.color.black);
+        mLightOnContent = getString(R.string.on);
+        mLightOffContent = getString(R.string.off);
 
         mGame = new LightsOutGame();
         startGame();
@@ -67,8 +71,10 @@ public class MainActivity extends AppCompatActivity {
 
             if (mGame.isLightOn(row, col)) {
                 gridButton.setBackgroundColor(mLightOnColor);
+                gridButton.setContentDescription(mLightOnContent);
             } else {
                 gridButton.setBackgroundColor(mLightOffColor);
+                gridButton.setContentDescription(mLightOffContent);
             }
         }
     }
