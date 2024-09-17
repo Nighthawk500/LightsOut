@@ -30,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
             gridButton.setOnClickListener(this::onLightButtonClick);
         }
 
+        // Long click listener for top left button cheat
+        Button topLeftButton = (Button) mLightGrid.getChildAt(0);
+        topLeftButton.setOnLongClickListener(this::onTopLeftButtonLongClick);
+
         mLightOnColor = ContextCompat.getColor(this, R.color.yellow);
         mLightOffColor = ContextCompat.getColor(this, R.color.black);
         mLightOnContent = getString(R.string.on);
@@ -37,6 +41,13 @@ public class MainActivity extends AppCompatActivity {
 
         mGame = new LightsOutGame();
         startGame();
+    }
+
+    private boolean onTopLeftButtonLongClick(View view) {
+        mGame.turnAllLightsOff();
+        setButtonColors();
+        Toast.makeText(this, "Cheat activated, you win", Toast.LENGTH_SHORT).show();
+        return true;
     }
 
     private void startGame() {

@@ -12,6 +12,14 @@ public class LightsOutGame {
         mLightsGrid = new boolean[GRID_SIZE][GRID_SIZE];
     }
 
+    public void turnAllLightsOff(){
+        for (int row = 0; row < GRID_SIZE; row++) {
+            for (int col = 0; col < GRID_SIZE; col++){
+                mLightsGrid[row][col]= false;
+            }
+        }
+    }
+
     public void newGame() {
         Random randomNumGenerator = new Random();
         for (int row = 0; row < GRID_SIZE; row++) {
