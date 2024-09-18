@@ -1,5 +1,7 @@
+//Specifies the package
 package com.zybooks.lightsout;
 
+//
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
