@@ -46,6 +46,11 @@ import androidx.core.content.ContextCompat;
 // Defines the main activity class and extends AppCompatActivity for backward compatibility
 public class MainActivity extends AppCompatActivity {
 
+    //  Joseph Marvin
+    //  ISYS 221 - VL1
+    //  Individual Programming Assignment #3 - Lights Out - Code Explanation
+    //  Due: 9/22/2024
+
     // Create string for saving and restoring game state
     private final String GAME_STATE = "gameState";
 
